@@ -1,0 +1,15 @@
+1. Sprint -  Mostly 2 weeks 
+
+2. Quarter planning first sprint is started
+
+3. Every monday every 2 weeks- Next sprint planning, previous sprint closing
+
+4. Every other monday - Sprint Backlog grooming
+
+5. Sprint retro for every sprint
+
+6. Story points in Fibonacci series
+
+7. Each story point is for a day(8 hours)
+
+8. Jira task, bug only has story point

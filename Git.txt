@@ -1,0 +1,18 @@
+git pull
+
+git status
+
+git add <filename>
+
+git commit -m "Adding changes"
+
+git push origin <feature_branch_name>
+
+git diff
+
+
+Push latest branch: git push -u origin Practice-branch
+
+Switch branch: git switch Practice-repo
+
+git checkout new_branch_name

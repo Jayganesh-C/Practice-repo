@@ -1,0 +1,9 @@
+White Box Testing https://www.youtube.com/watch?v=KIAkoae6_jE
+Black Box Testing(also called Functional Testing) Example https://www.youtube.com/watch?v=6pbB37nFUZw
+
+Defect Life Cycle
+
+New -> Assigned -> Open -> Fixed -> Waiting for restet - > Retest -> Verified -> Closed	
+					^										  |
+					|										  V
+					----------------------------------------Reopened

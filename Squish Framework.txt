@@ -1,0 +1,15 @@
+Squish Functions
+
+1. waitForObject
+
+2. snooze
+
+3. mouseClick
+
+4. findObject
+
+5. flick
+
+6. doubleClick
+
+7. Squish generates squish report
