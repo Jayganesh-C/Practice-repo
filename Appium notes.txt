@@ -1,0 +1,361 @@
+
+links:-
+https://github.com/ios-control/ios-deploy/issues/346
+https://github.com/appium/appium-xcuitest-driver/blob/master/docs/real-device-config.md
+https://github.com/appium/appium/issues/6955
+http://appium.io/docs/en/advanced-concepts/wda-custom-server/
+http://appium.io/docs/en/writing-running-appium/caps/
+https://www.mutuallyhuman.com/blog/2017/04/20/webdriveragent-getting-started-with-automated-ios-testing/
+https://stackoverflow.com/questions/16550594/jenkins-xcode-build-works-codesign-fails#
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
+"""
+Simple iOS tests, showing accessing elements and getting/setting text from them.
+"""
+import unittest
+import os
+from random import randint
+from appium import webdriver
+from time import sleep
+from appium.webdriver.common.touch_action import TouchAction
+
+class SimpleIOSTests(unittest.TestCase):
+
+    def setUp(self):
+        # set up appium
+        app = os.path.abspath('/Users/admin/Desktop/Jay/ver_1.0.9_2.0_ipafile/BMA_Version_1.0.9_2.0.ipa')
+        self.driver = webdriver.Remote(
+            command_executor='http://0.0.0.0:4723/wd/hub',
+            desired_capabilities={
+             'platformName': 'iOS',
+             'platformVersion': '11.4',
+             'deviceName': 'iPad mini 2',
+             'automationName': 'XCUITest',
+             'app': app,
+             'noReset': 'true',
+             'udid': '43dd9486519454c58acb2ea515a3fdb54853e869',
+             'xcodeOrgId': 'MWRN498Q5J',
+             'xcodeSigningId': 'iPhone Developer',
+             'keychainPath': '/Users/admin/Library/Keychains/MyKey.keychain-db',
+             'keychainPassword': 'Wipro@123',
+             'showXcodeLog': 'true',
+             'updatedWDABundleId': 'com.Breville.test.Appium.test '
+            })
+
+#    def tearDown(self):
+#        self.driver.quit()
+    def test_login_in(self):
+        els1 = self.driver.find_elements_by_xpath("//XCUIElementTypeButton[@name=\"menu icon\"]")
+        els1[0].click()
+        els2 = self.driver.find_elements_by_xpath("//XCUIElementTypeButton[@name=\"back btn\"]")
+        els2[0].click()
+        els1 = self.driver.find_elements_by_name("Login")
+        els1[1].click()
+        els2 = self.driver.find_elements_by_name("Email")
+        els2[0].click()
+        els2[0].send_keys("wiprocompa@gmail.com")
+        els3 = self.driver.find_elements_by_name("Password")
+        els3[0].click()
+        els3[0].send_keys("Wipro@123")
+        els4 = self.driver.find_elements_by_name("Login")
+        els4[0].click()
+        self.driver.implicitly_wait(150000)
+    def test_ui_computation(self):
+        el1 = self.driver.find_element_by_accessibility_id("Filter")
+        el1.click()
+        el2 = self.driver.find_element_by_accessibility_id("Breakfast")
+        el2.click()
+        el3 = self.driver.find_element_by_accessibility_id("Drinks")
+        el3.click()
+        el4 = self.driver.find_element_by_accessibility_id("Nut Free")
+        el4.click()
+        el5 = self.driver.find_element_by_accessibility_id("Filter")
+        el5.click()
+        TouchAction(self.driver).tap(x=738, y=389).perform()
+        el1 = self.driver.find_element_by_accessibility_id("Filter")
+        el1.click()
+        el2 = self.driver.find_element_by_accessibility_id("Breakfast")
+        el2.click()
+        el3 = self.driver.find_element_by_accessibility_id("Drinks")
+        el3.click()
+        el4 = self.driver.find_element_by_accessibility_id("Nut Free")
+        el4.click()
+        el5 = self.driver.find_element_by_accessibility_id("Filter")
+        el5.click()
+        TouchAction(self.driver).tap(x=738, y=389).perform()
+        #TouchAction(driver).press(x=800, y=411).move_to(x=804, y=161).release().perform()
+        #self.new.TouchAction(self.driver()).press(800, 411).moveTo(804, 161).release().perform()
+        for i in range(1,3):
+                self.driver.swipe(start_x=800, start_y=411, end_x=804, end_y=161, duration=800)
+                self.driver.swipe(start_x=804, start_y=161, end_x=800, end_y=411, duration=804)
+        TouchAction(self.driver).tap(x=738, y=389).perform()
+     #   el19 = self.driver.find_element_by_xpath(
+      #      "//XCUIElementTypeApplication[@name=\"Breville App\"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[11]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeImage[1]")
+      #  el19.click()
+        self.driver.implicitly_wait(150000)
+        self.driver.swipe(start_x=800, start_y=411, end_x=804, end_y=161, duration=800)
+        #self.driver.swipe(start_x=800, start_y=411, end_x=804, end_y=161, duration=800)
+        self.driver.implicitly_wait(1500000)
+
+    def test_something_bjk(self):
+        TouchAction(self.driver).tap(x=477, y=473).perform()
+        TouchAction(self.driver).tap(x=385, y=360).perform()
+        self.driver.swipe(start_x=800, start_y=730, end_x=804, end_y=130, duration=800)
+        self.driver.implicitly_wait(1500000)
+
+    #def test_sign_up(self):
+
+
+
+"""
+    def test_scrol(self):
+        actions = TouchAction(self.driver)
+        actions.scroll_from_element(self.element, 829, 117)
+        actions.scroll(826, 385)
+        actions.perform()
+        TouchAction(self.driver).tap(x=763, y=730).perform()
+
+
+"""      # populate text fields with values
+
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+   # suite = unittest.TestLoader().loadTestsFromTestCase(SimpleIOSTests)
+   # unittest.TextTestRunner(verbosity=2).run(suite)
+
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+
+
+1.sudo npm install -g ios-deploy –unsafe-perm=true
+2.brew install libimobiledevice –HEAD
+3.Seperate wda xcodeproject and bundle id added in updatedbundleid
+ 
+ 
+ 
+ 
+ 
+ 
+https://news.wiprodigital.com/hubfs/Branded-Items/wipro-esig-static.png
+				
+Jayganesh C
+Project Engineer
+M: +91 97909 86182
+Wipro Limited
+ 
+ 
+ 
+Appium Functioning:
+1.Selenium webdriver picks a command form the code like (Element.click) and sends it in form of JSon via http request to the Appium server.  Appium server knows the automation context like the iOS and Android and sends this command to the Instruments command server which will wait for the Instruments command client (written in node.js) to pick it up and execute it in bootstrap.js with in the iOS instruments environment. Once the command is executed the command client sends back the message to the Appium server which logs everything related to the command in its console. This cycle keeps going till the time all the commands gets executed.
+2.Unlike other tools Appium doesn’t require you to include some extra agents in your app to make it automation friendly. It believes in the philosophy of testing the same app which we are going to submit in the app store
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+Test_J
+
+
+Requirement with violations
+
+Minimum temp of pan when home off is 24 and off is showing in place of set temp button
+
+
+1.Sounds->At temp sound-> off
+Now when the timer and the temperature is set for particular values,after the timer is over the stop alarm is not working.
+2.ANZ LINGUINI 
+STAGE1 -> STEP 1 ~BASIL QUANTITY NOT SHOWING
+      ~SMALL FOOD PROCESSOR NOT SHOWN
+3.ANZ BROCCOLI RABE(ERROR COMMON FOR ALL RECIPES AND ALL STAGES)
+STAGE 1
+STEP 4 ->START HEATING->NOW GO TO TOOLS AND LOCK THE SCREEN.NOW UNLOCKING THE SCREEN AGAIN THE CONTROL DISPLAY GOES TO MANUAL COOKING.
+
+/Users/admin/Library/Developer/CoreSimulator/Devices/343C6FF2-9F3E-47C1-87C9-EAA880F63960/data/Containers/Bundle/Application/980045A2-660F-47F5-A0A0-34A6542E5B6D
+
+RAT
+URL- http://rat-dev.breville-iot.com/#/login
+ID - admin@breville.com
+Password - Breville_RAT@2K17
+Pho - Vietnamese Noodle Soup
+Ingredients description not fully shown in app
+
+Bechamel sauce Ingredients is not seen
+Stag 3->step 3->image missing
+
+Chicken
+Pho
+
+__rcp
+
+
+
+Admin site
+ 
+URL - https://aws-iot-admin.breville-iot.com
+Username - admin@breville-iot.com
+Password - This!sMyP@$$w0rd
+ 
+
+Swipe 
+
+self.driver.swipe(start_x=800, start_y=411, end_x=804, end_y=161, duration=800)
+
+
+
+Login
+
+els1 = self.driver.find_elements_by_name("Login")
+els1[1].click()
+els2 = self.driver.find_elements_by_name("Email")
+els2[0].click()
+els2[0].send_keys("wiprocompa@gmail.com")
+els3 = self.driver.find_elements_by_name("Password")
+els3[0].click()
+els3[0].send_keys("Wipro@123")
+els4 = self.driver.find_elements_by_name("Login")
+els4[0].click()
+
+
+
+
+
+/Applications/Appium.app/Contents/Resources/app/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/Scripts
+
+
+
+
+Nashville style hot chicken
+Bechamael sauce
+Pho soup
+Test recipe
+
+
+T25474621
+
+34-40,42,48
+
+***************WDA RUNNER***********************
+
+cd /Users/admin/Desktop/Jay/Xcodeproj/Webnew/WebDriverAgentRunner
+
+xcodebuild -project WebDriverAgent.xcodeproj -scheme WebDriverAgentRunner -destination 'id=43dd9486519454c58acb2ea515a3fdb54853e869' test
+
+export DEVICE_URL='http://172.20.10.6:8100/’
+export DEVICE_URL='http://2049:4071:218a:b7cf:cd6:1269:fdce:cb45:8100'
+
+export JSON_HEADER='-H "Content-Type: application/json;charset=UTF-8, accept: application/json"'
+curl -X GET $JSON_HEADER $DEVICE_URL/status
+
+
+cd /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent
+
+com.Breville.test.Appium3
+
+XX2H7LJPKB
+
+
+DEVELOPMENT_TEAM = [TeamID]
+CODE_SIGN_IDENTITY = iPhone Developer
+
+
+
+
+GCC_TREAT_WARNINGS_AS_ERRORS = YES
+GCC_WARN_PEDANTIC = YES
+GCC_WARN_SHADOW = YES
+GCC_WARN_64_TO_32_BIT_CONVERSION = YES
+GCC_WARN_MISSING_PARENTHESES = YES
+GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES
+GCC_WARN_SIGN_COMPARE = YES
+GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES
+GCC_WARN_UNUSED_PARAMETER = YES
+GCC_WARN_UNUSED_VALUE = YES
+GCC_WARN_UNUSED_VARIABLE = YES
+GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = YES
+
+CLANG_ANALYZER_NONNULL = YES
+CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES
+CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES
+CLANG_WARN_ENUM_CONVERSION = YES
+CLANG_WARN_INT_CONVERSION = YES
+CLANG_WARN_ASSIGN_ENUM = YES
+CLANG_WARN_BOOL_CONVERSION = YES
+CLANG_WARN_CONSTANT_CONVERSION = YES
+CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES
+
+RUN_CLANG_STATIC_ANALYZER = YES
+
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited)
+
+WARNING_CFLAGS = $(inherited) -Weverything -Wno-objc-missing-property-synthesis -Wno-unused-macros -Wno-disabled-macro-expansion -Wno-gnu-statement-expression -Wno-language-extension-token -Wno-overriding-method-mismatch -Wno-missing-variable-declarations -Rno-module-build -Wno-auto-import -Wno-objc-interface-ivars -Wno-documentation-unknown-command -Wno-reserved-id-macro -Wno-unused-parameter -Wno-gnu-conditional-omitted-operand -Wno-explicit-ownership-type -Wno-date-time -Wno-cast-align -Wno-cstring-format-directive -Wno-double-promotion -Wno-partial-availability
+
+
+
+./Scripts/bootstrap.sh
+
+"xcodeConfigFile": " /usr/local/lib/node_modules/appium/node_modules/appium-xcuitest-driver/WebDriverAgent/Configurations/myconfig.xcconfig",
+
+
+  "xcodeOrgId": "MWRN498Q5J",
+  "xcodeSigningId": "iPhone Developer",
+
+
+——————————————————————————
+{
+  "platformName": "iOS",
+  "platformVersion": "11.4",
+  "deviceName": "iPad mini 2",
+  "automationName": "XCUITest",
+  "app": "/Users/admin/Desktop/Jay/ver_1.0.9_2.0_ipafile/BMA_Version_1.0.9_2.0.ipa",
+  "bundleId": "com.Breville.BMATest",
+  "noReset": true,
+  "udid": "43dd9486519454c58acb2ea515a3fdb54853e869",
+  "xcodeOrgId": "MWRN498Q5J",
+  "xcodeSigningId": "iPhone Developer",
+  "updatedWDABundleId": "com.Breville.test.Appium",
+  "keychainPath": "/Users/admin/Library/Keychains/MyKey.keychain-db",
+  "keychainPassword": "Wipro@123",
+  "showXcodeLog": "true”,
+"updatedWDABundleId": "com.Breville.test.Appium.test"
+}
+
+
+security list-keychains -s "/Users/admin/Library/Keychains/MyKey.keychain"
+security default-keychain -s "/Users/admin/Library/Keychains/MyKey.keychain"
+security unlock-keychain -p “Wipro@123” "/Users/admin/Library/Keychains/MyKey.keychain"
+
+
+
+————————Final Draft———————————
+
+
+{
+  "platformName": "iOS",
+  "platformVersion": "11.4",
+  "deviceName": "iPad mini 2",
+  "automationName": "XCUITest",
+  "app": "/Users/admin/Desktop/integ/IntegrationApp.app",
+  "noReset": true,
+  "udid": "43dd9486519454c58acb2ea515a3fdb54853e869",
+  "xcodeOrgId": "MWRN498Q5J",
+  "xcodeSigningId": "iPhone Developer",
+  "keychainPath": "/Users/admin/Library/Keychains/MyKey.keychain-db",
+  "keychainPassword": "Wipro@123",
+  "showXcodeLog": "true",
+  "updatedWDABundleId": "com.Breville.test.Appium.test"
+}

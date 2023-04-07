@@ -1,0 +1,60 @@
+https://www.youtube.com/watch?v=d-KWz7euLlc&t=595s
+
+Robot Framework is an open source test automation framework for acceptance testing and acceptance test-driven development.
+It follows different test case styles – keyword-driven, behaviour-driven and data-driven for writing test cases
+
+
+
+pip install robotframework
+pip install robotframework-seleniumlibrary
+pip install selenium
+
+Robot framework functions
+
+1. Wait Until Page Contains Element (2 Args.: Elt and time-20s)
+
+2. Sleep 30s # builtin func
+
+3. Maximize Browser Window # Uses robot framework library -> Uses webdriver -> Uses selenium
+
+4. Open Browser
+
+5. Click Element (1 Arg.)
+
+6. Input Text (2 Args.: Elt and text)
+
+7. Wait Until Page Contains (2 Args.: Elt and time-20s) # can be used for text
+
+8. Scroll Element Into View (1 Arg.) #Scrolls the page till the element is visible
+
+9. Location Should Be (1 Arg. : URL) #Checks the URL the page is in currently
+
+10. Page Should Contain (1 Arg.) #Text
+
+11. Page Should Contain Element(1 Arg.) #ELt
+
+12. Press Keys (2 Args. : Elt and Key-Eg. ENTER)
+
+13. Scroll Element Into View
+
+
+Robot framework declaration types
+
+*** Settings ***
+Documentation
+Resource # Variables and other functions
+Variables # .py files
+Library #Eg. SeleniumLibrary
+
+*** Test Cases ***
+
+1. Testcase will have documentation and tags(EG. Regression)
+
+*** Keywords ***
+
+
+xpath=//a[contains(text(),'Some text')]
+
+xpath=//div[@class='col-md-4 col-xs-4 col-sm-4']/input
+
+${EMPTY} = Null variable in Robot
