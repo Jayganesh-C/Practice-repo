@@ -16,3 +16,8 @@ Push latest branch: git push -u origin Practice-branch
 Switch branch: git switch Practice-repo
 
 git checkout new_branch_name
+
+git checkout master
+git pull origin master
+git merge test
+git push origin master
